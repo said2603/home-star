@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجري الاحترافي | للتسوق الإلكتروني</title>
+    <!-- الخطوط والأيقونات -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- ========================================== -->
+    <!-- 1. كود فيسبوك بيكسل (Meta Pixel Code) -->
+    <!-- ========================================== -->
+    <script>
+      const FB_PIXEL_ID = 'YOUR_FACEBOOK_PIXEL_ID'; // ضع رقم فيسبوك بيكسل هنا
+      
+      if(FB_PIXEL_ID !== 'YOUR_FACEBOOK_PIXEL_ID') {
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', FB_PIXEL_ID);
+        fbq('track', 'PageView');
+      }
+    </script>
+
+    <!-- ========================================== -->
+    <!-- 2. كود تيك توك بيكسل (TikTok Pixel Code) -->
+    <!-- ========================================== -->
+    <script>
+      const TIKTOK_PIXEL_ID = 'YOUR_TIKTOK_PIXEL_ID'; // ضع رقم تيك توك بيكسل هنا
+      
+      if(TIKTOK_PIXEL_ID !== 'YOUR_TIKTOK_PIXEL_ID') {
+        !function (w, d, t) {
+          w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq.methods[i],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var i="https://analytics.tiktok.com/i18n/pixel/events.js";ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=i,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};var o=document.createElement("script");o.type="text/javascript",o.async=!0,o.src=i+"?sdkid="+e+"&lib="+t;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(o,a)};
+          ttq.load(TIKTOK_PIXEL_ID);
+          ttq.page();
+        }(window, document, 'ttq');
+      }
+    </script>
+
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --accent: #ff4757;
+            --secondary: #2ed573;
+            --bg-light: #f8fafc;
+            --text-dark: #0f172a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            padding-bottom: 60px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo { font-size: 24px; font-weight: 900; display: flex; align-items: center; gap: 10px; }
+        .header-contact { display: flex; align-items: center; gap: 15px; }
+
+        .phone-btn {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 15px;
+            border-radius: 20px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .admin-icon-btn {
+            background: #fff;
+            color: var(--primary);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* سلايدر الصور التلقائي */
+        .slider-container {
+            position: relative;
+            width: 100%;
+            height: 350px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .slide {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide.active { opacity: 1; }
+
+        .slide-overlay {
+            background: rgba(0,0,0,0.4);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .container { max-width: 1200px; margin: 30px auto; padding: 0 20px; }
+        .section-title { text-align: center; margin-bottom: 30px; font-size: 28px; color: var(--primary-dark); }
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover { transform: translateY(-5px); }
+        .product-img { width: 100%; height: 220px; object-fit: cover; }
+        .product-info { padding: 20px; display: flex; flex-direction: column; flex-grow: 1; }
+        .product-title { font-size: 18px; font-weight: bold; margin-bottom: 10px; }
+        .product-price { font-size: 22px; color: var(--accent); font-weight: 900; margin-bottom: 15px; }
+
+        .btn-buy {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: auto;
+            font-size: 16px;
+            transition: 0.2s;
+        }
+
+        .btn-buy:hover { background: #26af5f; }
+
+        /* Modals */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .close-btn { position: absolute; top: 15px; left: 15px; font-size: 20px; cursor: pointer; color: #888; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
+        .form-group input, .form-group select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 15px; }
+
+        .payment-badge { background: #e0f2fe; color: #0369a1; padding: 10px; border-radius: 8px; text-align: center; font-weight: bold; margin-bottom: 15px; }
+
+        /* Admin Dashboard */
+        .admin-dashboard {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #f1f5f9;
+            z-index: 3000;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .admin-header { display: flex; justify-content: space-between; align-items: center; background: white; padding: 20px; border-radius: 10px; margin-bottom: 20px; }
+        table { width: 100%; border-collapse: collapse; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        th, td { padding: 12px 15px; text-align: right; border-bottom: 1px solid #ddd; }
+        th { background: var(--primary); color: white; }
+        .status-select { padding: 5px; border-radius: 5px; font-weight: bold; }
+
+        @media (max-width: 768px) {
+            .slider-container { height: 220px; }
+            .header-contact span { display: none; }
+            th, td { font-size: 12px; padding: 8px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo"><i class="fa-solid fa-bag-shopping"></i> متجري</div>
+        <div class="header-contact">
+            <a href="tel:0558618857" class="phone-btn"><i class="fa-solid fa-phone"></i> <span>0558618857</span></a>
+            <button class="admin-icon-btn" onclick="openAdminLogin()"><i class="fa-solid fa-lock"></i> لوحة التحكم</button>
+        </div>
+    </header>
+
+    <!-- سلايدر الصور التناوبي -->
+    <div class="slider-container">
+        <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=1200&q=80');">
+            <div class="slide-overlay"><h2>تخفيضات كبرى حصرياً!</h2><p>أفضل المنتجات بأفضل الأسعار في الجزائر</p></div>
+        </div>
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=1200&q=80');">
+            <div class="slide-overlay"><h2>توصيل سريع لـ 58 ولاية</h2><p>الدفع عند الاستلام يد بيد</p></div>
+        </div>
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=1200&q=80');">
+            <div class="slide-overlay"><h2>جودة عالية مضمونة</h2><p>تسوّق الآن بثقة وأمان</p></div>
+        </div>
+    </div>
+
+    <!-- المنتجات -->
+    <div class="container">
+        <h2 class="section-title">المنتجات المتاحة</h2>
+        <div class="products-grid" id="products-container"></div>
+    </div>
+
+    <!-- نافذة الطلب -->
+    <div class="modal" id="orderModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('orderModal')">&times;</span>
+            <h3 style="margin-bottom: 15px;">إتمام الطلب</h3>
+            <form id="orderForm" onsubmit="submitOrder(event)">
+                <input type="hidden" id="selectedProduct">
+                <input type="hidden" id="selectedPrice">
+                
+                <div class="form-group">
+                    <label>الاسم الكامل:</label>
+                    <input type="text" id="custName" required placeholder="مثال: محمد بن علي">
+                </div>
+                <div class="form-group">
+                    <label>رقم الهاتف:</label>
+                    <input type="tel" id="custPhone" required placeholder="0558618857" pattern="[0-9]{10}">
+                </div>
+                <div class="form-group">
+                    <label>الولاية:</label>
+                    <select id="custWilaya" onchange="updateMunicipalities()" required>
+                        <option value="">اختر الولاية...</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>البلدية:</label>
+                    <select id="custBaladiya" required>
+                        <option value="">اختر البلدية...</option>
+                    </select>
+                </div>
+
+                <div class="payment-badge"><i class="fa-solid fa-truck-ramps"></i> طريقة الدفع: الدفع عند الاستلام</div>
+                <button type="submit" class="btn-buy" style="background: var(--primary);">تأكيد الطلب الآن</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- نافذة الشكر -->
+    <div class="modal" id="thankYouModal">
+        <div class="modal-content" style="text-align: center;">
+            <i class="fa-solid fa-circle-check" style="font-size: 60px; color: var(--secondary); margin-bottom: 15px;"></i>
+            <h2>شكراً لتسوقك معنا!</h2>
+            <p style="margin: 15px 0;">تم استلام طلبك بنجاح. وسنتصل بك قريباً عبر الهاتف لتأكيد الشحن.</p>
+            <button class="btn-buy" onclick="closeModal('thankYouModal')">متابعة التسوق</button>
+        </div>
+    </div>
+
+    <!-- نافذة دخول لوحة التحكم -->
+    <div class="modal" id="adminLoginModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('adminLoginModal')">&times;</span>
+            <h3>دخول لوحة التحكم</h3>
+            <br>
+            <div class="form-group">
+                <label>أدخل الرمز السري:</label>
+                <input type="password" id="adminPin" placeholder="****">
+            </div>
+            <button class="btn-buy" onclick="verifyAdmin()">دخول</button>
+        </div>
+    </div>
+
+    <!-- لوحة التحكم -->
+    <div class="admin-dashboard" id="adminDashboard">
+        <div class="admin-header">
+            <h2><i class="fa-solid fa-gauge"></i> لوحة التحكم والإدارة</h2>
+            <div>
+                <span>الهاتف: <b>0558618857</b></span> | 
+                <button onclick="closeAdmin()" style="padding: 5px 10px; background: var(--accent); color: white; border: none; border-radius: 5px; cursor: pointer;">خروج</button>
+            </div>
+        </div>
+
+        <h3 style="margin-bottom: 15px;">إدارة الطلبيات وتتبعها</h3>
+        <div style="overflow-x: auto;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>التاريخ</th>
+                        <th>الزبون</th>
+                        <th>الهاتف</th>
+                        <th>الولاية والبلدية</th>
+                        <th>المنتج</th>
+                        <th>حالة الطلب (تتبع)</th>
+                    </tr>
+                </thead>
+                <tbody id="ordersTable"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        const algeriaData = {
+            "01 - أدرار": ["أدرار", "أوقروت", "أولف", "برج باجي مختار"],
+            "02 - الشلف": ["الشلف", "تنس", "تاجمونت", "المرسى"],
+            "03 - الأغواط": ["الأغواط", "أفلو", "حاسي رمل"],
+            "09 - البليدة": ["البليدة", "بوفاريك", "العفرون", "موزاية"],
+            "16 - الجزائر": ["الجزائر الوسطى", "باب الوادي", "سيدي امحمد", "الشراقة", "درارية", "الرويبة", "حسين داي"],
+            "19 - سطيف": ["سطيف", "العلمة", "عين أرنات", "عين ولمان"],
+            "25 - قسنطينة": ["قسنطينة", "الخروب", "حامة بوزيان", "زيغود يوسف"],
+            "31 - وهران": ["وهران", "إيساتو", "قديل", "السانية", "أرزيو"],
+            "35 - بومرداس": ["بومرداس", "بودواو", "برج منايل", "دلس"],
+            "58 - المنيعة": ["المنيعة", "حاسي القارة"]
+        };
+
+        let products = [
+            { id: 1, name: "ساعة ذكية احترافية Smart Watch", price: "4500", image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=500&q=80" },
+            { id: 2, name: "سماعات لاسلكية عالية الدقة", price: "3200", image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=500&q=80" },
+            { id: 3, name: "حقيبة ظهر مقاومة للماء", price: "3800", image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=500&q=80" }
+        ];
+
+        let slideIndex = 0;
+        function startSlider() {
+            const slides = document.querySelectorAll('.slide');
+            setInterval(() => {
+                slides[slideIndex].classList.remove('active');
+                slideIndex = (slideIndex + 1) % slides.length;
+                slides[slideIndex].classList.add('active');
+            }, 5000);
+        }
+
+        window.onload = function() {
+            startSlider();
+            renderProducts();
+            loadWilayas();
+        };
+
+        function renderProducts() {
+            const container = document.getElementById('products-container');
+            container.innerHTML = products.map(p => `
+                <div class="product-card">
+                    <img src="${p.image}" class="product-img" alt="${p.name}">
+                    <div class="product-info">
+                        <div class="product-title">${p.name}</div>
+                        <div class="product-price">${p.price} د.ج</div>
+                        <button class="btn-buy" onclick="openOrderModal('${p.name}', '${p.price}')">طلب الآن (الدفع عند الاستلام)</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function loadWilayas() {
+            const wilayaSelect = document.getElementById('custWilaya');
+            for (let wilaya in algeriaData) {
+                let opt = document.createElement('option');
+                opt.value = wilaya;
+                opt.textContent = wilaya;
+                wilayaSelect.appendChild(opt);
+            }
+        }
+
+        function updateMunicipalities() {
+            const wilayaSelect = document.getElementById('custWilaya').value;
+            const baladiyaSelect = document.getElementById('custBaladiya');
+            baladiyaSelect.innerHTML = '<option value="">اختر البلدية...</option>';
+
+            if (wilayaSelect && algeriaData[wilayaSelect]) {
+                algeriaData[wilayaSelect].forEach(baladiya => {
+                    let opt = document.createElement('option');
+                    opt.value = baladiya;
+                    opt.textContent = baladiya;
+                    baladiyaSelect.appendChild(opt);
+                });
+            }
+        }
+
+        function openOrderModal(productName, price) {
+            document.getElementById('selectedProduct').value = productName;
+            document.getElementById('selectedPrice').value = price;
+            document.getElementById('orderModal').style.display = 'flex';
+
+            // --- تتبع بدء عملية الشراء (InitiateCheckout) في البيكسل ---
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'InitiateCheckout', { content_name: productName, value: price, currency: 'DZD' });
+            }
+            if (typeof ttq !== 'undefined') {
+                ttq.track('InitiateCheckout', { content_name: productName, value: price, currency: 'DZD' });
+            }
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        function submitOrder(e) {
+            e.preventDefault();
+            
+            const productName = document.getElementById('selectedProduct').value;
+            const price = document.getElementById('selectedPrice').value;
+
+            const order = {
+                id: Date.now(),
+                date: new Date().toLocaleDateString('ar-DZ'),
+                product: productName,
+                price: price,
+                name: document.getElementById('custName').value,
+                phone: document.getElementById('custPhone').value,
+                wilaya: document.getElementById('custWilaya').value,
+                baladiya: document.getElementById('custBaladiya').value,
+                status: 'قيد الانتظار'
+            };
+
+            let orders = JSON.parse(localStorage.getItem('my_orders') || '[]');
+            orders.push(order);
+            localStorage.setItem('my_orders', JSON.stringify(orders));
+
+            // --- تتبع نجاح الشراء (Purchase / CompletePayment) في البيكسل ---
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'Purchase', { content_name: productName, value: price, currency: 'DZD' });
+            }
+            if (typeof ttq !== 'undefined') {
+                ttq.track('CompletePayment', { content_name: productName, value: price, currency: 'DZD' });
+            }
+
+            document.getElementById('orderForm').reset();
+            closeModal('orderModal');
+            document.getElementById('thankYouModal').style.display = 'flex';
+        }
+
+        function openAdminLogin() {
+            document.getElementById('adminLoginModal').style.display = 'flex';
+        }
+
+        function verifyAdmin() {
+            const pin = document.getElementById('adminPin').value;
+            if (pin === "2603") {
+                closeModal('adminLoginModal');
+                document.getElementById('adminPin').value = '';
+                document.getElementById('adminDashboard').style.display = 'block';
+                loadAdminOrders();
+            } else {
+                alert("الرمز السري غير صحيح!");
+            }
+        }
+
+        function closeAdmin() {
+            document.getElementById('adminDashboard').style.display = 'none';
+        }
+
+        function loadAdminOrders() {
+            let orders = JSON.parse(localStorage.getItem('my_orders') || '[]');
+            const tbody = document.getElementById('ordersTable');
+            
+            if(orders.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;">لا توجد طلبيات مسجلة بعد.</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = orders.reverse().map((o, index) => `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td>${o.date}</td>
+                    <td><b>${o.name}</b></td>
+                    <td><a href="tel:${o.phone}">${o.phone}</a></td>
+                    <td>${o.wilaya} - ${o.baladiya}</td>
+                    <td>${o.product} (${o.price} د.ج)</td>
+                    <td>
+                        <select class="status-select" onchange="changeStatus(${o.id}, this.value)">
+                            <option value="قيد الانتظار" ${o.status === 'قيد الانتظار' ? 'selected' : ''}>⏳ قيد الانتظار</option>
+                            <option value="تم الشحن" ${o.status === 'تم الشحن' ? 'selected' : ''}>🚚 تم الشحن</option>
+                            <option value="تم التوصيل" ${o.status === 'تم التوصيل' ? 'selected' : ''}>✅ تم التوصيل</option>
+                            <option value="ملغى" ${o.status === 'ملغى' ? 'selected' : ''}>❌ ملغى</option>
+                        </select>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function changeStatus(orderId, newStatus) {
+            let orders = JSON.parse(localStorage.getItem('my_orders') || '[]');
+            orders = orders.map(o => {
+                if(o.id === orderId) o.status = newStatus;
+                return o;
+            });
+            localStorage.setItem('my_orders', JSON.stringify(orders));
+        }
+    </script>
+</body>
+</html>
